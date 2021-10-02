@@ -1,7 +1,7 @@
 const fs = require('fs');
 const portAudio = require('naudiodon');
 
-const shazam = require('./shazam.js');
+const fingerprint = require('./fingerprint.js');
 
 record();
 
@@ -29,7 +29,7 @@ async function record() {
         if (err) {
             throw err;
         };
-        shazam(data);
+        fingerprint(data);
     })
 };
 
