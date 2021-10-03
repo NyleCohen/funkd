@@ -1,13 +1,12 @@
-const fs = require('fs');
-const portAudio = require('naudiodon');
+import fs from 'fs';
+import portAudio from 'naudiodon';
 
 const fingerprint = require('./fingerprint.js');
 
 record();
 
 async function record() {
-    // Create an instance of AudioIO with inOptions (defaults are as below), which will return a ReadableStream
-    var ai = new portAudio.AudioIO({
+    var ai = new (portAudio.AudioIO as any)({
         inOptions: {
             channelCount: 1, // Mono required by shazam
             sampleFormat: portAudio.SampleFormat16Bit,
@@ -18,14 +17,14 @@ async function record() {
     });
 
     // Create a write stream to write out to a raw audio file
-    var ws = fs.createWriteStream('sample.raw');
+    var ws = fs.createWriteStream('./sample.raw');
 
     ai.pipe(ws);
     ai.start();
     await sleep(4000);
     ai.quit();
 
-    fs.readFile(__dirname + '/sample.raw', "base64", (err, data) => {
+    fs.readFile(__dirname + '/../sample.raw', "base64", (err: any, data: any) => {
         if (err) {
             throw err;
         };
@@ -33,7 +32,7 @@ async function record() {
     })
 };
 
-function sleep(ms) {
+function sleep(ms: any) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
     });

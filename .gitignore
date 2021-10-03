@@ -1,6 +1,7 @@
 node_modules
 audio
 covers
+dist
 
 sample.raw
 config.json

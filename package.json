@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ."
+    "start": "tsc && npm run copy-files && node dist/index.js",
+    "copy-files": "copyfiles -u 1 ./src/presence.py ./dist/"
   },
   "keywords": [
     "music"
@@ -14,11 +15,14 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.4",
-    "disconnect": "^1.2.2",
-    "discord-rpc": "^4.0.1",
-    "discord.js": "^13.1.0",
     "download": "^8.0.0",
-    "naudiodon": "^2.3.5",
-    "spotify-web-api-node": "^5.0.2"
+    "naudiodon": "^2.3.5"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "typescript": "^4.4.3",
+    "@types/axios": "^0.14.0",
+    "@types/download": "^8.0.1",
+    "@types/naudiodon": "^2.2.5"
   }
 }

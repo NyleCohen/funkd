@@ -13,7 +13,7 @@ parser.add_argument('image', type=str)
 
 args = parser.parse_args()
 
-with open('./config.json', 'r') as f:
+with open('../config.json', 'r') as f:
     config = json.load(f)
 
 clientID = config['DISCORD_CLIENT_ID']

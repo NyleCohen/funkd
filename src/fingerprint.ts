@@ -1,11 +1,11 @@
-const axios = require("axios").default;
+import axios from 'axios';
 
-const { SHAZAM_KEY } = require("./config.json");
+const { SHAZAM_KEY } = require("../config.json");
 
 const pullmeta = require('./pullmeta.js');
 
-module.exports = (encodedSample) => {
-    var options = {
+module.exports = (encodedSample: any) => {
+    var options: any = {
         method: 'POST',
         url: 'https://shazam.p.rapidapi.com/songs/detect',
         headers: {
