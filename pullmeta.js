@@ -21,7 +21,11 @@ module.exports = (trackName, trackAlbum) => {
         var artist = response.data.Results[0].artists[0].name;
         var url = response.data.Results[0].external_urls.spotify;
         var imageURL = response.data.Results[0].album.images[0].url;
-        var imageName = album.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+        var imageName = album.replace(/[^a-zA-Z0-9]/g, "").toLowerCase().substring(0,32);
+
+        if (imageName.length > 32) {
+            console.log("NIGHTMARE");
+        }
 
         console.log(`Track found:\nTrack: ${name}\nAlbum: ${album}`);
 
@@ -34,12 +38,8 @@ module.exports = (trackName, trackAlbum) => {
         };
 
         const spawn = require("child_process").spawn;
-        const presence = spawn('python', [__dirname + "./presence.py", name, album, artist, url, imageName]);
-
-        presence.stdout.on('data', (data) => {
-            console.log(data);
-        });
-    }).catch(function (error) {
+        spawn('python', [__dirname + "./presence.py", name, album, artist, url, imageName]);
+   }).catch(function (error) {
         console.error(error);
     });
 };
